@@ -9,9 +9,12 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.1",
     "date-fns": "^2.22.1",
     "faker": "^5.5.3",
     "faker-extra": "^1.4.2",
+    "idb": "^6.1.2",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
@@ -22,8 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "update-data": "node ./scripts/update-data.mjs"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "md5": "^2.3.0",
+    "mds": "^0.1.7"
   }
 }

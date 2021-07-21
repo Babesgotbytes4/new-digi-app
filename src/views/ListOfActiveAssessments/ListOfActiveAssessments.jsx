@@ -1,22 +1,14 @@
-import React from "react";
-import faker, { time } from "faker";
-import fakerE from "faker-extra";
+import React, { useEffect, useState } from "react";
+import { capitalize } from 'lodash';
 import styled from "styled-components";
 
-import { useScrollToTop } from "../../hooks/useScrollToTop"
+import NavMenu from "../../components/NavMenu";
+import { assessments } from "../../api/assessments";
+import { useScrollToTop } from "../../hooks/useScrollToTop";
 import { Title } from "../../components/Title";
 import { Button } from "../../components/Button";
 import { tokens } from "../../data/tokens";
-import { Summary } from "../../components/Summary"
-import NavMenu from "../../components/NavMenu";
-
-const MOCK_ASSESSMENTS = fakerE.array([3, 20], () => ({
-  id: faker.datatype.uuid(),
-  title: faker.commerce.productName(),
-  image: faker.image.business(),
-  timeAsMinutes: faker.datatype.number({ min: 10, max: 120 }),
-  difficulty: faker.random.arrayElement(["Beginner", "Intermediate", "Expert"]),
-}));
+import { Summary } from "../../components/Summary";
 
 const Base = styled.div`
   text-align: center;
@@ -28,36 +20,58 @@ const TitleWrap = styled.div`
 `;
 
 const ButtonWrap = styled.div`
-    position: sticky;
-    left: 0;
-    z-index: 5;
-    top: 0;
-    background: white;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  top: 0;
+  background: white;
   padding: ${tokens.spacing.s} ${tokens.spacing.l};
 `;
 
 export const ListOfActiveAssessments = () => {
+  const [data, setData] = useState(null);
+
+  console.log(data)
+
+  const getData = async () => {
+    const response = await assessments.read();
+    setData(response);
+  };
+
+  useEffect(() => getData(), []);
   useScrollToTop();
-  
+
   return (
     <Base>
-        <TitleWrap>
-          <Title level={1}>Active</Title>
-        </TitleWrap>
-<ButtonWrap>
+      <TitleWrap>
+        <Title level={1}>Active</Title>
+      </TitleWrap>
+
+      <ButtonWrap>
         <Button full>Filters</Button>
-     </ButtonWrap>
+      </ButtonWrap>
+
       <main>
-      {MOCK_ASSESSMENTS.map(({ id, title, timeAsMinutes, image, difficulty }) => (
-          <Summary 
-            difficulty={difficulty}
-            href={`/assessments/${id}`}
-            image={image}
-            timeAsMinutes={timeAsMinutes}
-            title={title}
-          />
-    
-      ))}
+        {!data && (
+          <>
+            <Summary loading />
+            <Summary loading />
+            <Summary loading />
+            <Summary loading />
+          </>
+        )}
+
+        {data && data.map(
+          ({ id, name, timeAndMinutes, image, difficulty }) => (
+            <Summary
+              key={id}
+              difficulty={capitalize (difficulty)}
+              href={`/assessment/${id}`}
+              image={image}
+              timeAsMinutes={timeAndMinutes}
+              title={name}
+            />
+          ))}
       </main>
       <NavMenu current="active" />
     </Base>
