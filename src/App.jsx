@@ -8,6 +8,7 @@ import { Assessment }  from './views/Assessment'
 import { Score } from './views/Score';
 import { createGlobalStyle } from 'styled-components';
 import { tokens } from './data/tokens'
+import{Home} from './views/Home'
 
 
 const Global = createGlobalStyle`
@@ -43,7 +44,7 @@ export const App = () => {
                     </Route>
 
                     <Route path="/">
-                        <div>Landing Page to come here</div>
+                        <Home />
                     </Route>
                 </Switch>
             </BrowserRouter>

@@ -68,25 +68,6 @@ export const Patterns = () => {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </Text>
         </LightBackground>
-        <hr />
-
-        <DarkBackground>
-          <Text size="s" inverse>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </Text>
-          <hr />
-
-          <Text size="m" inverse>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </Text>
-          <hr />
-
-          <Text size="l" inverse>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          </Text>
-        </DarkBackground>
-
-        <hr />
 
         <DarkBackground>
           <Text size="s" inverse importance="secondary">
