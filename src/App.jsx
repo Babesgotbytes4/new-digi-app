@@ -8,8 +8,7 @@ import { Assessment }  from './views/Assessment'
 import { Score } from './views/Score';
 import { createGlobalStyle } from 'styled-components';
 import { tokens } from './data/tokens'
-import{Home} from './views/Home'
-
+import { Home } from './views/Home'
 
 const Global = createGlobalStyle`
   body{
